@@ -66,6 +66,22 @@ function update_post_links($permalink, $post) {
   return $permalink;
 }
 
+if( function_exists('acf_add_options_page') ) {
+  /*
+    In case we do this, the idea would be:
+      - upload file
+      - process content, do mappings ...
+      - create post
+      - delete file
+  */
+
+  acf_add_options_sub_page(array(
+    'page_title'     => 'Import Publication',
+    'menu_title'    => 'Import Publication',
+    'parent_slug'    => 'edit.php?post_type=publications',
+  ));
+}
+
 add_action('init', 'bruderland_register_post_types');
 add_action('save_post', 'trigger_netlify_deploy');
 add_action('admin_menu','cleanup_admin');
