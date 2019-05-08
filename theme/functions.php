@@ -1,9 +1,9 @@
 <?php
 
 $PRODUCTION_URL = 'https://coaltransitions.netlify.com';
-$BUILD_HOOK_URL = 'https://api.netlify.com/build_hooks/5cb587cfd6fd64bb48a15409';
+$BUILD_HOOK_URL = 'https://api.netlify.com/build_hooks/5cd2d01863a2f25c5cbcf2c7';
 
-function bruderland_register_post_types() {
+function coaltransitions_register_post_types() {
   register_post_type('publications',
     array(
       'labels' => array(
@@ -31,6 +31,8 @@ function bruderland_register_post_types() {
 
 // see https://plugins.trac.wordpress.org/browser/wp-gatsby/trunk/class-wp-gatsby.php
 function trigger_netlify_deploy() {
+  global $BUILD_HOOK_URL;
+
   wp_remote_post($BUILD_HOOK_URL);
 }
 
@@ -55,38 +57,15 @@ function custom_visit_site_url($wp_admin_bar) {
   $wp_admin_bar->add_node($node);
 }
 
-function update_post_links($permalink, $post) {
-  if(get_post_type($post) == 'episodes') {
-    $permalink = home_url('/episodes/'.$post->post_name);
-  }
-
-  if(get_post_type($post) == 'protagonists') {
-    $permalink = home_url('/protagonists/'.$post->post_name);
-  }
-  return $permalink;
+function register_custom_nav_menus() {
+  register_nav_menus('navigation', 'Navigation');
 }
 
-if( function_exists('acf_add_options_page') ) {
-  /*
-    In case we do this, the idea would be:
-      - upload file
-      - process content, do mappings ...
-      - create post
-      - delete file
-  */
-
-  acf_add_options_sub_page(array(
-    'page_title'     => 'Import Publication',
-    'menu_title'    => 'Import Publication',
-    'parent_slug'    => 'edit.php?post_type=publications',
-  ));
-}
-
-add_action('init', 'bruderland_register_post_types');
-add_action('save_post', 'trigger_netlify_deploy');
+add_action('after_setup_theme', 'register_custom_nav_menus');
+add_action('init', 'coaltransitions_register_post_types');
+add_action('save_post_publications', 'trigger_netlify_deploy');
 add_action('admin_menu','cleanup_admin');
 add_action('admin_bar_menu', 'custom_visit_site_url', 80);
-add_filter('post_type_link', 'update_post_links', 10, 2) ;
 
 add_theme_support('post-thumbnails');
 
