@@ -27,6 +27,29 @@ function coaltransitions_register_post_types() {
       )
     )
   );
+
+  register_post_type('coal-phase-out',
+    array(
+      'labels' => array(
+        'name' => 'Coal Phase-Out',
+        'singular_name' => 'Coal Phase-Out',
+        'add_new' => 'New Fact',
+        'add_new_item' => 'Add New Fact'
+      ),
+      'public' => true,
+      'has_archive' => true,
+      'rewrite' => array(
+        'slug' => 'coal-phase-out'
+      ),
+      'show_in_rest' => true,
+      'menu_icon' => 'dashicons-admin-comments',
+      'supports' => array(
+        'title',
+        'thumbnail',
+        'revisions',
+      )
+    )
+  );
 }
 
 // see https://plugins.trac.wordpress.org/browser/wp-gatsby/trunk/class-wp-gatsby.php
