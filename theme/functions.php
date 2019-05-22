@@ -50,6 +50,50 @@ function coaltransitions_register_post_types() {
       )
     )
   );
+
+  register_post_type('research-projects',
+    array(
+      'labels' => array(
+        'name' => 'Research Projects',
+        'singular_name' => 'Research Project',
+        'add_new' => 'New Research Project',
+        'add_new_item' => 'Add New Research Project'
+      ),
+      'public' => true,
+      'has_archive' => true,
+      'rewrite' => array(
+        'slug' => 'research-project'
+      ),
+      'show_in_rest' => true,
+      'menu_icon' => 'dashicons-admin-site',
+      'supports' => array(
+        'title',
+        'revisions',
+      )
+    )
+  );
+
+  register_post_type('researcher',
+    array(
+      'labels' => array(
+        'name' => 'Researcher',
+        'singular_name' => 'Researcher',
+        'add_new' => 'New Researcher',
+        'add_new_item' => 'Add New Researcher'
+      ),
+      'public' => true,
+      'has_archive' => true,
+      'rewrite' => array(
+        'slug' => 'researcher'
+      ),
+      'show_in_rest' => true,
+      'menu_icon' => 'dashicons-admin-users',
+      'supports' => array(
+        'title',
+        'revisions',
+      )
+    )
+  );
 }
 
 // see https://plugins.trac.wordpress.org/browser/wp-gatsby/trunk/class-wp-gatsby.php
