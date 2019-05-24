@@ -28,11 +28,11 @@ function coaltransitions_register_post_types() {
     )
   );
 
-  register_post_type('main-findings',
+  register_post_type('findings',
     array(
       'labels' => array(
-        'name' => 'Main Findings',
-        'singular_name' => 'Main Finding',
+        'name' => 'Findings',
+        'singular_name' => 'Finding',
         'add_new' => 'New Finding',
         'add_new_item' => 'Add New Finding'
       ),
@@ -51,7 +51,7 @@ function coaltransitions_register_post_types() {
     )
   );
 
-  register_post_type('research-projects',
+  register_post_type('researchprojects',
     array(
       'labels' => array(
         'name' => 'Research Projects',
