@@ -28,18 +28,18 @@ function coaltransitions_register_post_types() {
     )
   );
 
-  register_post_type('coal-phase-out',
+  register_post_type('main-findings',
     array(
       'labels' => array(
-        'name' => 'Coal Phase-Out',
-        'singular_name' => 'Coal Phase-Out',
-        'add_new' => 'New Fact',
-        'add_new_item' => 'Add New Fact'
+        'name' => 'Main Findings',
+        'singular_name' => 'Main Finding',
+        'add_new' => 'New Finding',
+        'add_new_item' => 'Add New Finding'
       ),
       'public' => true,
       'has_archive' => true,
       'rewrite' => array(
-        'slug' => 'coal-phase-out'
+        'slug' => 'findings'
       ),
       'show_in_rest' => true,
       'menu_icon' => 'dashicons-admin-comments',
@@ -73,10 +73,10 @@ function coaltransitions_register_post_types() {
     )
   );
 
-  register_post_type('researcher',
+  register_post_type('researchers',
     array(
       'labels' => array(
-        'name' => 'Researcher',
+        'name' => 'Researchers',
         'singular_name' => 'Researcher',
         'add_new' => 'New Researcher',
         'add_new_item' => 'Add New Researcher'
@@ -88,6 +88,29 @@ function coaltransitions_register_post_types() {
       ),
       'show_in_rest' => true,
       'menu_icon' => 'dashicons-admin-users',
+      'supports' => array(
+        'title',
+        'revisions',
+      )
+    )
+  );
+
+  register_post_type('about',
+    array(
+      'labels' => array(
+        'name' => 'About',
+        'singular_name' => 'About',
+        'add_new' => 'New About Page',
+        'add_new_item' => 'Add New About Page'
+      ),
+      'public' => true,
+      'has_archive' => true,
+      'rewrite' => array(
+        'slug' => 'about'
+      ),
+      'show_in_rest' => true,
+      'menu_icon' => 'dashicons-admin-users',
+      'hierarchical' => true,
       'supports' => array(
         'title',
         'revisions',
