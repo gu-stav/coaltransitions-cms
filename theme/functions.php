@@ -148,12 +148,18 @@ function custom_visit_site_url($wp_admin_bar) {
 }
 
 function register_custom_nav_menus() {
-  register_nav_menus('navigation', 'Navigation');
+  register_nav_menu('menu', 'Menu');
+  register_nav_menu('footer', 'Footer');
 }
 
-add_action('after_setup_theme', 'register_custom_nav_menus');
+function coaltransitions_remove_editor() {
+  remove_post_type_support('page', 'editor');
+}
+
+add_action('init', 'register_custom_nav_menus');
 add_action('init', 'coaltransitions_register_post_types');
-add_action('save_post_publications', 'trigger_netlify_deploy');
+add_action('init', 'coaltransitions_remove_editor');
+add_action('save_post', 'trigger_netlify_deploy');
 add_action('admin_menu','cleanup_admin');
 add_action('admin_bar_menu', 'custom_visit_site_url', 80);
 
