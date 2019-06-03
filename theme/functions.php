@@ -152,13 +152,14 @@ function register_custom_nav_menus() {
   register_nav_menu('footer', 'Footer');
 }
 
-function coaltransitions_remove_editor() {
+function coaltransitions_remove_page_features() {
   remove_post_type_support('page', 'editor');
+  remove_post_type_support('page', 'thumbnail');
 }
 
 add_action('init', 'register_custom_nav_menus');
 add_action('init', 'coaltransitions_register_post_types');
-add_action('init', 'coaltransitions_remove_editor');
+add_action('init', 'coaltransitions_remove_page_features');
 add_action('save_post', 'trigger_netlify_deploy');
 add_action('admin_menu','cleanup_admin');
 add_action('admin_bar_menu', 'custom_visit_site_url', 80);
