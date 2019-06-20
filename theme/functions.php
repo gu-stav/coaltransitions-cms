@@ -1,7 +1,7 @@
 <?php
 
-$PRODUCTION_URL = 'https://coaltransitions.netlify.com';
-$BUILD_HOOK_URL = 'https://api.netlify.com/build_hooks/5cd2d01863a2f25c5cbcf2c7';
+$PRODUCTION_URL = 'https://coaltransitions.org';
+$BUILD_HOOK_URL = 'https://api.netlify.com/build_hooks/5cb587cfd6fd64bb48a15409';
 
 function coaltransitions_register_post_types() {
   register_post_type('publications',
