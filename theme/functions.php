@@ -20,6 +20,9 @@ function coaltransitions_register_post_types() {
       'show_in_rest' => true,
       'menu_icon' => 'dashicons-format-aside',
       'taxonomies' => array('post_tag'),
+      'show_in_graphql' => true,
+      'graphql_single_name' => 'publication',
+      'graphql_plural_name' => 'publications',
       'supports' => array(
         'title',
         'thumbnail',
@@ -43,6 +46,9 @@ function coaltransitions_register_post_types() {
       ),
       'show_in_rest' => true,
       'menu_icon' => 'dashicons-admin-comments',
+      'show_in_graphql' => true,
+      'graphql_single_name' => 'finding',
+      'graphql_plural_name' => 'findings',
       'supports' => array(
         'title',
         'thumbnail',
@@ -66,6 +72,9 @@ function coaltransitions_register_post_types() {
       ),
       'show_in_rest' => true,
       'menu_icon' => 'dashicons-admin-site',
+      'show_in_graphql' => true,
+      'graphql_single_name' => 'researchProject',
+      'graphql_plural_name' => 'researchProjects',
       'supports' => array(
         'title',
         'revisions',
@@ -88,6 +97,9 @@ function coaltransitions_register_post_types() {
       ),
       'show_in_rest' => true,
       'menu_icon' => 'dashicons-admin-users',
+      'show_in_graphql' => true,
+      'graphql_single_name' => 'researcher',
+      'graphql_plural_name' => 'researchers',
       'supports' => array(
         'title',
         'revisions',
@@ -111,6 +123,9 @@ function coaltransitions_register_post_types() {
       'show_in_rest' => true,
       'menu_icon' => 'dashicons-admin-users',
       'hierarchical' => true,
+      'show_in_graphql' => true,
+      'graphql_single_name' => 'aboutPage',
+      'graphql_plural_name' => 'aboutPages',
       'supports' => array(
         'title',
         'revisions',
