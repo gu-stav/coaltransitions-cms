@@ -1,7 +1,6 @@
 <?php
 
 $PRODUCTION_URL = 'https://coaltransitions.org';
-$BUILD_HOOK_URL = 'https://api.netlify.com/build_hooks/5cb587cfd6fd64bb48a15409';
 
 function coaltransitions_register_post_types() {
   register_post_type('publications',
@@ -107,38 +106,41 @@ function coaltransitions_register_post_types() {
     )
   );
 
-  register_post_type('about',
+  register_post_type('news',
     array(
       'labels' => array(
-        'name' => 'About',
-        'singular_name' => 'About',
-        'add_new' => 'New About Page',
-        'add_new_item' => 'Add New About Page'
+        'name' => 'News',
+        'singular_name' => 'News',
+        'add_new' => 'Create News Entry',
+        'add_new_item' => 'Add News Entry'
       ),
       'public' => true,
       'has_archive' => true,
       'rewrite' => array(
-        'slug' => 'about'
+        'slug' => 'news'
       ),
       'show_in_rest' => true,
-      'menu_icon' => 'dashicons-admin-users',
-      'hierarchical' => true,
+      'menu_icon' => 'dashicons-format-aside',
+      'taxonomies' => array('news_tags'),
       'show_in_graphql' => true,
-      'graphql_single_name' => 'aboutPage',
-      'graphql_plural_name' => 'aboutPages',
+      'graphql_single_name' => 'newsEntry',
+      'graphql_plural_name' => 'news',
       'supports' => array(
         'title',
         'revisions',
       )
     )
   );
-}
 
-// see https://plugins.trac.wordpress.org/browser/wp-gatsby/trunk/class-wp-gatsby.php
-function trigger_netlify_deploy() {
-  global $BUILD_HOOK_URL;
-
-  wp_remote_post($BUILD_HOOK_URL);
+  register_taxonomy('news_tags', array('news'), array(
+    'hierarchical' => false,
+    'show_ui' => true,
+    'show_admin_column' => true,
+    'show_in_graphql' => true,
+    'graphql_single_name' => 'newsTag',
+    'graphql_plural_name' => 'newsTags',
+    'rewrite' => array( 'slug' => 'tags' ),
+  ));
 }
 
 function cleanup_admin() {
@@ -169,7 +171,6 @@ function register_custom_nav_menus() {
 
 function coaltransitions_remove_page_features() {
   remove_post_type_support('page', 'editor');
-  remove_post_type_support('page', 'thumbnail');
 }
 
 add_action('init', 'register_custom_nav_menus');
@@ -179,6 +180,6 @@ add_action('save_post', 'trigger_netlify_deploy');
 add_action('admin_menu','cleanup_admin');
 add_action('admin_bar_menu', 'custom_visit_site_url', 80);
 
-add_theme_support('post-thumbnails');
+add_theme_support('post-thumbnails', ['page']);
 
 ?>
