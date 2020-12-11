@@ -180,6 +180,6 @@ add_action('save_post', 'trigger_netlify_deploy');
 add_action('admin_menu','cleanup_admin');
 add_action('admin_bar_menu', 'custom_visit_site_url', 80);
 
-add_theme_support('post-thumbnails', ['page']);
+add_theme_support('post-thumbnails', ['page', 'publications']);
 
 ?>
